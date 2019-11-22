@@ -6,7 +6,7 @@ sudo pip install virtualenv
 2-Create environment\
 sudo virtualenv --python='/usr/bin/python3' venv
 
-3-Run\
+3-Activate\
 source venv/bin/activate
 
 4-Install requirements\
