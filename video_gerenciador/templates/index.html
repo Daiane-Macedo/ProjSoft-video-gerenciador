@@ -6,5 +6,21 @@
 </head>
 <body>
 
+<h1>Video Uploader</h1>
+<form enctype="multipart/form-data" method="POST" action="{% url "video" %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="file" accept="video/*" onchange="this.form.submit()"/>
+</form>
+
+<br>
+
+<video width='400' controls>
+    <source src='{{ MEDIA_URL }}{{ videofile }}' type='video/mp4'>
+    Your browser does not support the video tag.
+    </video>
+<br>
+</p>
+
 </body>
 </html>
