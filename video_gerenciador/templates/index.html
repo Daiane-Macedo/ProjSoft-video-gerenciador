@@ -1,26 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
-<h1>Video Uploader</h1>
-<form enctype="multipart/form-data" method="POST" action="{% url "video" %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="file" accept="video/*" onchange="this.form.submit()"/>
-</form>
+{% extends "base.html" %}
 
-<br>
+{% block content %}
+<div id="menu">
+  <ul>
+    <li>
+        <a href="#">Seus Vídeos</a>
+    </li>
+    <li>
+      <a href="upload">Inserir vídeo</a>
+    </li>
+  </ul>
 
-<video width='400' controls>
-    <source src='{{ MEDIA_URL }}{{ videofile }}' type='video/mp4'>
-    Your browser does not support the video tag.
-    </video>
-<br>
-</p>
-
-</body>
-</html>
+</div>
+{% endblock %}

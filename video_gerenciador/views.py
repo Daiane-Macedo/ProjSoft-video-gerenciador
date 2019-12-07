@@ -4,34 +4,33 @@ from django.shortcuts import render
 from django.shortcuts import render
 
 from videoGerenciador import settings
+from videoGerenciador.settings import MEDIA_URL, MEDIA_ROOT
 from .models import Video
-from .forms import VideoForm
+from .forms import Video_Form
 from django.views.generic import TemplateView
 
 
 class Video(TemplateView):
-    template_name = 'index.html'
+    template_name = 'upload.html'
+
+    def index_view(request):
+        return render(request, 'index.html')
 
     def show_video(request):
-
-        lastvideo = Video.objects.last()
-        videofile = lastvideo.videofile
-
-        form = VideoForm(request.POST or None, request.FILES or None)
-        if form.is_valid():
-            form.save()
-
-        context = {'videofile': videofile,
-                   'form': form
-                   }
-        return render(request, '/index.html', context)
+        if request.method == 'GET':
+            form = Video_Form()
+            context = {"form": form}
+            return render(request, 'upload.html', context)
 
     def post_video(request):
-        context = locals()
+        form = Video_Form()
         if request.method == 'POST':
-            form = VideoForm(request.POST or None, request.FILES or None)
-
+            form = Video_Form(request.POST, request.FILES)
             if form.is_valid():
-                form.save()
+                video = form.save(commit=False)
+                video.content = request.FILES['video']
+                video.save()
+                return render(request, 'upload.html', {'video': video})
 
-            return render(request, 'index.html', context)
+        context = {"form": form}
+        return render(request, 'upload.html', context)
