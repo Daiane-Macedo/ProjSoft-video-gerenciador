@@ -13,7 +13,8 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 5-Migrations\
-python manage.py makemigrations
+python manage.py makemigrations 
+python manage.py migrate
 
 6-Run app\
 DEVELOPMENT=1 python manage.py runserver

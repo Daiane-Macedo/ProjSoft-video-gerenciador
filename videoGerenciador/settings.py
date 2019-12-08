@@ -85,8 +85,11 @@ WSGI_APPLICATION = 'videoGerenciador.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'read_default_file': '/etc/mysql/my.cnf',
+            'charset': 'utf8mb4'
+        },
     }
 }
 

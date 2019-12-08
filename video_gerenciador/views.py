@@ -28,7 +28,7 @@ class Video(TemplateView):
             form = Video_Form(request.POST, request.FILES)
             if form.is_valid():
                 video = form.save(commit=False)
-                video.content = request.FILES['video']
+                video.file = request.FILES['video']
                 video.save()
                 return render(request, 'upload.html', {'video': video})
 
