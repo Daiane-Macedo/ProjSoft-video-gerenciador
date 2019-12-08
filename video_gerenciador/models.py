@@ -1,9 +1,7 @@
 
 from django.db import models
 
-
 # Create your models here.
-from videoGerenciador.settings import MEDIA_ROOT
 
 
 class Video(models.Model):
@@ -13,7 +11,7 @@ class Video(models.Model):
     artist = models.CharField(max_length=500, null=True, blank=True)
     director = models.CharField(max_length=500, null=True, blank=True)
     production_date = models.DateField(blank=True, null=True)
-    file = models.FileField(upload_to='videos/', null=True, verbose_name="")
+    file = models.FileField(null=False, verbose_name="")
 
     class Meta:
         db_table = "video"

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
     'video_gerenciador'
 ]
 
@@ -135,3 +136,19 @@ SITE_URL = "http://127.0.0.1:8000"
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
+
+#AWS A3 Config
+AWS_ACCESS_KEY_ID = 'AKIAJEBS7VMETNCK3PIA'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'uploaded-media02'
+AWS_S3_REGION_NAME = 'us-east-1'
+AWS_S3_ENDPOINT_URL = 'https://s3.amazonaws.com'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+
+DEFAULT_FILE_STORAGE = 'videoGerenciador.storage_backends.MediaStorage'
+AWS_DEFAULT_ACL = None
+VIDEO_URL = 'https://' + AWS_S3_CUSTOM_DOMAIN + '/' + MEDIA_URL

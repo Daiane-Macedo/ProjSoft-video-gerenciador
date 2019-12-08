@@ -1,11 +1,7 @@
-from django.shortcuts import render
-
 # Create your views here.
 from django.shortcuts import render
 
-from videoGerenciador import settings
-from videoGerenciador.settings import MEDIA_URL, MEDIA_ROOT
-from .models import Video
+from videoGerenciador.settings import MEDIA_URL, MEDIA_ROOT, DEFAULT_FILE_STORAGE, AWS_S3_CUSTOM_DOMAIN, VIDEO_URL
 from .forms import Video_Form
 from django.views.generic import TemplateView
 
@@ -30,7 +26,13 @@ class Video(TemplateView):
                 video = form.save(commit=False)
                 video.file = request.FILES['video']
                 video.save()
-                return render(request, 'upload.html', {'video': video})
+                videourl = (VIDEO_URL + str(video))
+                video.file = videourl
+                video.save()
+                return render(request, 'upload.html', {'video': video, 'videourl': videourl})
 
         context = {"form": form}
         return render(request, 'upload.html', context)
+
+
+
