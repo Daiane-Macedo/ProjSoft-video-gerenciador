@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import django_heroku
 
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 
@@ -130,3 +131,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = 'media/'
 
 SITE_URL = "http://127.0.0.1:8000"
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
