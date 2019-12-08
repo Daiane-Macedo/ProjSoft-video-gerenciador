@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import django_heroku
+import environ
 
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 
@@ -87,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'video_db',
         'USER': 'admin_videodb',
-        'PASSWORD': '%!sPVZdJe0*q',
+        'PASSWORD': '95X#ym^HbXWN',
         'HOST': 'video.ccagj0vpy0ca.us-east-1.rds.amazonaws.com',
         'PORT': '3306',
         'OPTIONS': {
@@ -138,8 +139,16 @@ MEDIA_URL = 'media/'
 django_heroku.settings(locals())
 
 #AWS A3 Config
-AWS_ACCESS_KEY_ID = 'AKIAJEBS7VMETNCK3PIA'
-AWS_SECRET_ACCESS_KEY = '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'
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+# reading .env file
+environ.Env.read_env()
+
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+
 AWS_STORAGE_BUCKET_NAME = 'uploaded-media02'
 AWS_S3_REGION_NAME = 'us-east-1'
 AWS_S3_ENDPOINT_URL = 'https://s3.amazonaws.com'
