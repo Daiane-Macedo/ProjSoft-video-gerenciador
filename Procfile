@@ -1,1 +1,1 @@
-web: gunicorn video_gerenciador.wsgi
+web: gunicorn video_gerenciador.wsgi --log-file -
