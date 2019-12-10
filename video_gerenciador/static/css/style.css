@@ -24,9 +24,11 @@ body {
 
 a {
   text-decoration:none;
-  color:#555;
 }
-
+a:hover,
+a:link{
+  text-decoration:none;
+}
 i {
   padding:1em 1.5em;
   cursor:pointer;
@@ -99,4 +101,44 @@ i:hover {
 #menu li.active ul {
 	display: block;
 }
+.title a{
+  text-decoration: none;
+  display: list-item;
+  color: #333333;
+  font-size: 1.2em;
+  font-weight: 600;
+  padding-bottom: 6px;
+}
+.videoList{
+  width: 80%;
+  margin: 2% auto;
+  list-style: none;
+}
 
+.row{
+    background: #fff;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    height: 200px;
+}
+.miniVideo video{
+  height:  200px;;
+}
+.videoDescription{
+  padding-left: 12px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: 100%;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+.videoDescription li,
+.videoDescription p{
+  color: #908f8f;
+}
+.textBox{
+  width: 67%;
+  height: inherit;
+  position: relative;
+}

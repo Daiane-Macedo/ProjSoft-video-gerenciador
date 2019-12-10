@@ -3,6 +3,7 @@ from django.shortcuts import render
 
 from videoGerenciador.settings import MEDIA_URL, MEDIA_ROOT, DEFAULT_FILE_STORAGE, AWS_S3_CUSTOM_DOMAIN, VIDEO_URL
 from .forms import Video_Form
+from .models import Video as videoModel
 from django.views.generic import TemplateView
 
 
@@ -10,7 +11,13 @@ class Video(TemplateView):
     template_name = 'upload.html'
 
     def index_view(request):
-        return render(request, 'index.html')
+        if request.method == 'GET':
+            return render(request, 'index.html')
+
+    def list_videos(request):
+        if request.method == 'GET':
+            videos = videoModel.objects.all()
+            return render(request, 'videos_list.html', {'videos_list': videos})
 
     def show_video(request):
         if request.method == 'GET':
