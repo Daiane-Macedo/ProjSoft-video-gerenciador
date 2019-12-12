@@ -2,15 +2,23 @@
 {% block content %}
 <div class="videoList">
         {% for video in videos_list %}
-            <div class="row">
-                <col-md-4 class="miniVideo" id ="video1">
+            <div class="row" style="overflow: hidden;">
+                <col-sm-4 class="miniVideo" id ="video1" style="width: 40%; overflow: hidden;">
+                    {% if video.image %}
+                        <img style="width: 100%" src="{{ video.image }}" />
+                    {% else %}
                     <video onclick="this.play()">
                         <source src="{{ video.file }}" type="video/mp4">
                     </video>
-                </col-md-4>
-                <col-md-8 class="textBox">
+                    {% endif %}
+                </col-sm-4>
+                <col-sm-8 class="textBox">
                     <div class="videoDescription">
+                        {% if video.yt_url %}
+                        <li class="title"><a href="{{ video.yt_url }}">{{ video.title }}</a></li>
+                        {% else %}
                         <li class="title"><a href="{{ video.file }}">{{ video.title }}</a></li>
+                        {% endif %}
 
                         {% if video.director %}<li>Diretor: {{ video.director }}</li> {% endif %}
                         {% if video.production_date %}<li>Data de produção: {{ video.production_date }}</li> {% endif %}
@@ -27,7 +35,7 @@
                             </form>
                          </div>
                     </div>
-                </col-md-8>
+                </col-sm-8>
             </div>
         {% endfor %}
 </div>
