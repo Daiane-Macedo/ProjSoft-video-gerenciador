@@ -1,6 +1,7 @@
 from django.conf.urls import url
 from django.conf.urls.static import static
 from django.urls import path
+from django.contrib import admin
 
 from videoGerenciador import settings
 from .views import Video
@@ -13,6 +14,7 @@ urlpatterns = [
                 path('upload_youtube', Video.new_video_youtube, name='upload_youtube'),
                 path('new_video', Video.new_video, name='new_video'),
                 path('', Video.list_videos, name='home'),
+                path('admin/', admin.site.urls),
                 url(r'^update/(?P<id>[0-9]+)/$', Video.update_video, name='update'),
                 url(r'^edit/(?P<id>[0-9]+)/$', Video.edit_video, name='edit'),
                 url(r'^delete/(?P<id>[0-9]+)/$', Video.delete_video, name='delete')
