@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'storages',
-    'video_gerenciador'
+    'video_gerenciador',
+    'users'
 ]
 
 MIDDLEWARE = [
