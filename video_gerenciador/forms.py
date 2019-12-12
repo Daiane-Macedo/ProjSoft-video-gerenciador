@@ -5,12 +5,12 @@ from django import forms
 
 
 class Video_Form(forms.ModelForm):
-    YEARS = [x for x in range(1940, 2021)]
+    YEARS = [x for x in range(1940, 2019)]
 
     description = forms.CharField(required=False)
     artist = forms.CharField(required=False)
     director = forms.CharField(required=False)
-    production_date = forms.DateField(required=False, widget=forms.SelectDateWidget(years=YEARS))
+    production_date = forms.DateField(required=False, input_formats=['%d-%m-%Y'], label=None,)
 
     class Meta:
         model = Video
@@ -23,3 +23,4 @@ class Video_Form(forms.ModelForm):
         self.fields['artist'].label = "Artista"
         self.fields['director'].label = "Diretor"
         self.fields['production_date'].label = "Data de produção"
+        self.fields['production_date'].widget.attrs['placeholder'] = '00-00-0000'

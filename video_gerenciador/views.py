@@ -1,18 +1,18 @@
 # Create your views here.
-from django.shortcuts import render
+import os
+
+from django.shortcuts import render, redirect
 
 from videoGerenciador.settings import MEDIA_URL, MEDIA_ROOT, DEFAULT_FILE_STORAGE, AWS_S3_CUSTOM_DOMAIN, VIDEO_URL
+from video_gerenciador import utils
 from .forms import Video_Form
 from .models import Video as videoModel
 from django.views.generic import TemplateView
+from django.http import HttpRequest
 
 
 class Video(TemplateView):
     template_name = 'upload-form.html'
-
-    def index_view(request):
-        if request.method == 'GET':
-            return render(request, 'index.html')
 
     def list_videos(request):
         if request.method == 'GET':
@@ -41,5 +41,16 @@ class Video(TemplateView):
         context = {"form": form}
         return render(request, 'upload-form.html', context)
 
+    def delete_video(request, id):
+        newRequest = HttpRequest()
+        newRequest.method = 'GET'
 
+        if request.method == 'POST':
+            # delete from s3 repository
+            videoName = videoModel.objects.get(id=id).file
+            path, filename = os.path.split(videoName.name)
+            utils.delete_from_S3(filename)
+            # delete from db
+            videoModel.objects.filter(id=id).delete()
 
+        return redirect('/')

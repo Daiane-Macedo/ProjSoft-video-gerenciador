@@ -5,6 +5,7 @@ from django.utils import timezone
 
 class Video(models.Model):
 
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=500)
     description = models.CharField(max_length=500, null=True, blank=True)
     artist = models.CharField(max_length=500, null=True, blank=True)

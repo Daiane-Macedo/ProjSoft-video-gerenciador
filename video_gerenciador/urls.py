@@ -10,7 +10,8 @@ app_name = "app"
 urlpatterns = [
                 path('video', Video.show_video, name='video'),
                 path('upload', Video.post_video, name='upload'),
-                path('', Video.list_videos, name='home')
+                path('', Video.list_videos, name='home'),
+                url(r'^delete/(?P<id>[0-9]+)/$', Video.delete_video, name='delete')
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

@@ -15,6 +15,10 @@
                         {% if video.director %}<li>Diretor: {{ video.director }}</li> {% endif %}
                         {% if video.production_date %}<li>Data de produção: {{ video.production_date }}</li> {% endif %}
                         {% if video.description %}<p>Descrição: {{ video.description }}</p>{% endif %}
+                       <form action="{% url 'delete' video.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" value="Delete cat">
+                    </form>
                     </div>
                 </col-md-8>
             </div>
