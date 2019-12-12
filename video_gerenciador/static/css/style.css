@@ -169,14 +169,14 @@ i:hover {
 /*}*/
 
 /*Video form*/
-.videoForm{
+.videoForm, .userForm {
   max-width: 500px;
   margin: 10px auto;
   padding: 20px;
   background: #fbfbfb;
 }
 
-.videoForm input{
+.videoForm input, .userForm input {
   border: none;
   border-radius: 4px;
   font-size: 15px;
@@ -193,11 +193,11 @@ i:hover {
   box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
 }
 
-.videoForm input:focus{
+.videoForm input:focus, .userForm input:focus {
   background: #d2d9dd;
 }
 
-.videoForm .videoInput{
+.videoForm .videoInput {
   background: none;
 }
 input[type="file"]{
@@ -209,7 +209,7 @@ background: none;
 	outline: inherit;
 }
 
-.videoForm h5{
+.videoForm h5, .userForm h5 {
   text-align: center;
 }
 
