@@ -1,7 +1,8 @@
 # Create your views here.
 import os
 
-from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.shortcuts import render, redirect, get_object_or_404
 
 from videoGerenciador.settings import MEDIA_URL, MEDIA_ROOT, DEFAULT_FILE_STORAGE, AWS_S3_CUSTOM_DOMAIN, VIDEO_URL
 from video_gerenciador import utils
@@ -54,3 +55,32 @@ class Video(TemplateView):
             videoModel.objects.filter(id=id).delete()
 
         return redirect('/')
+
+    def edit_video(request, id):
+        form = Video_Form()
+        context = {"form": form, 'id': id}
+        print(context)
+        return render(request, 'edit.html', context)
+
+    def update_video(request, id):
+
+        if request.method == 'POST':
+            print(id)
+            instance = get_object_or_404(videoModel, id=id)
+            form = Video_Form(request.POST, instance = instance)
+            context = {'form': form}
+            print(form.is_valid())
+            if form.is_valid():
+                form.id = id
+                video = form.save(commit=False)
+                video.save(update_fields=["title", "description", "artist", "director", "production_date"])
+                messages.success(request, "Vídeo atualizado com sucesso")
+                context = {'form': form}
+                return redirect('/')
+
+            else:
+                context = {'form': form,
+                           'id':id,
+                           'error': 'Erro ao editar o formulário'}
+                return render(request, 'edit.html', context)
+

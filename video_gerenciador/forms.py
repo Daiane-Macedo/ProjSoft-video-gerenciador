@@ -5,7 +5,6 @@ from django import forms
 
 
 class Video_Form(forms.ModelForm):
-    YEARS = [x for x in range(1940, 2019)]
 
     description = forms.CharField(required=False)
     artist = forms.CharField(required=False)

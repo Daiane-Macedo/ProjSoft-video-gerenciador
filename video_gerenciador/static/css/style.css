@@ -139,6 +139,29 @@ i:hover {
 .videoDescription p{
   color: #908f8f;
 }
+.btns{
+  display: inline-flex;
+}
+.deleteBtn {
+  background: #ff4f4f !important;
+}
+.updateBtn{
+  background: #6610f2 !important;
+  float: right;
+  margin-left: 20px;
+}
+.updateBtn,
+.deleteBtn{
+  border: none;
+  border-radius: 3px;
+  padding: 5px 6px;
+  color: #ffffff;
+  font-weight: 600;
+  color: #ffff;
+}
+
+
+
 /*.textBox{*/
 /*  width: 67%;*/
 /*  height: inherit;*/
