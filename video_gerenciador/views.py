@@ -6,9 +6,12 @@ from django.views.decorators.http import require_http_methods
 from videoGerenciador.settings import VIDEO_URL
 from video_gerenciador import utils
 from .forms import Video_Form
+from .yt_forms import Youtube_Video_Form
 from .models import Video as videoModel
 from django.views.generic import TemplateView
 from django.http import HttpRequest
+from .services.video_form_factory import VideoFormFactory
+from .services.upload_strategy import UploadStrategy
 
 
 class Video(TemplateView):
@@ -26,22 +29,28 @@ class Video(TemplateView):
         context = {"form": form}
 
         return render(request, 'upload-form.html', context)
+    
+    @require_http_methods(["GET", "POST"])
+    def new_video_youtube(request):
+        form = Youtube_Video_Form()
+
+        context = {"form": form, "from_pc": False}
+        return render(request, 'upload-form.html', context)
 
     @require_http_methods(["GET", "POST"])
     def post_video(request):
-        form = Video_Form(request.POST, request.FILES)
+        from_pc = True
+
+        if request.POST and request.POST['from_pc'] == "False":
+            from_pc = False
+
+        form = VideoFormFactory.create(from_pc, request)
 
         if form.is_valid():
-            video = form.save(commit=False)
-            video.file = request.FILES['video']
-            video.save()
-            videourl = (VIDEO_URL + str(video))
-            video.file = videourl
-            video.save()
-
+            video, videourl = UploadStrategy.save(from_pc, form, request)
             return render(request, 'video.html', {'video': video, 'videourl': videourl})
 
-        context = {"form": form}
+        context = {"form": form, "from_pc": from_pc }
         return render(request, 'upload-form.html', context)
 
     @require_http_methods(["POST"])
@@ -56,6 +65,10 @@ class Video(TemplateView):
         videoModel.objects.filter(id=id).delete()
 
         return redirect('/')
+
+    @require_http_methods(["GET"])
+    def new_video(request):
+        return render(request, 'new.html')
 
     @require_http_methods(["POST"])
     def edit_video(request, id):

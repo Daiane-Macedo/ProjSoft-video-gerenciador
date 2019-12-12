@@ -9,7 +9,14 @@
 
         {% csrf_token %}
         {{ form.as_p }}
-        <input class="videoInput" type="file" accept="video/*" name = "video" onchange="this.form.submit()"/>
+
+        {% if from_pc == True %}
+            <input class="videoInput" type="file" accept="video/*" name = "video" onchange="this.form.submit()"/>
+        {% endif %}
+
+        <input type="hidden" name="from_pc" value="{{ from_pc }}">
+
+        <button type="submit">Enviar</button>
     </form>
 </div>
 {% endblock %}
