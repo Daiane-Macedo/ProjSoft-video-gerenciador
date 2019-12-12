@@ -145,7 +145,7 @@ env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
 )
-# reading .env file
+# reading ..env file
 environ.Env.read_env()
 
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
