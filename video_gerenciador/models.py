@@ -11,8 +11,9 @@ class Video(models.Model):
     artist = models.CharField(max_length=500, null=True, blank=True)
     director = models.CharField(max_length=500, null=True, blank=True)
     production_date = models.DateField(blank=True, null=True)
-    file = models.FileField(null=False, verbose_name="")
+    file = models.FileField(null=True, verbose_name="")
     upload_date = models.DateTimeField(editable=False)
+    yt_url = models.CharField(max_length=255, null=True, blank=True, verbose_name="URL do YT")
 
     class Meta:
         db_table = "video"
