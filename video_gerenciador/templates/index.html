@@ -1,16 +1,23 @@
-
 {% extends "base.html" %}
-
 {% block content %}
-<div id="menu">
-  <ul>
-    <li>
-        <a href="list">Seus Vídeos</a>
-    </li>
-    <li>
-      <a href="upload">Inserir vídeo</a>
-    </li>
-  </ul>
+<div class="videoList">
+        {% for video in videos_list %}
+            <div class="row">
+                <col-md-4 class="miniVideo" id ="video1">
+                    <video onclick="this.play()">
+                        <source src="{{ video.file }}" type="video/mp4">
+                    </video>
+                </col-md-4>
+                <col-md-8 class="textBox">
+                    <div class="videoDescription">
+                        <li class="title"><a href="{{ video.file }}">{{ video.title }}</a></li>
 
+                        {% if video.director %}<li>Diretor: {{ video.director }}</li> {% endif %}
+                        {% if video.production_date %}<li>Data de produção: {{ video.production_date }}</li> {% endif %}
+                        {% if video.description %}<p>Descrição: {{ video.description }}</p>{% endif %}
+                    </div>
+                </col-md-8>
+            </div>
+        {% endfor %}
 </div>
 {% endblock %}

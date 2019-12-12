@@ -8,7 +8,7 @@ from django.views.generic import TemplateView
 
 
 class Video(TemplateView):
-    template_name = 'upload.html'
+    template_name = 'upload-form.html'
 
     def index_view(request):
         if request.method == 'GET':
@@ -16,14 +16,14 @@ class Video(TemplateView):
 
     def list_videos(request):
         if request.method == 'GET':
-            videos = videoModel.objects.all()
-            return render(request, 'videos_list.html', {'videos_list': videos})
+            videos = videoModel.objects.all().order_by('upload_date')
+            return render(request, 'index.html', {'videos_list': videos})
 
     def show_video(request):
         if request.method == 'GET':
             form = Video_Form()
             context = {"form": form}
-            return render(request, 'upload.html', context)
+            return render(request, 'upload-form.html', context)
 
     def post_video(request):
         form = Video_Form()
@@ -36,10 +36,10 @@ class Video(TemplateView):
                 videourl = (VIDEO_URL + str(video))
                 video.file = videourl
                 video.save()
-                return render(request, 'upload.html', {'video': video, 'videourl': videourl})
+                return render(request, 'video.html', {'video': video, 'videourl': videourl})
 
         context = {"form": form}
-        return render(request, 'upload.html', context)
+        return render(request, 'upload-form.html', context)
 
 
 

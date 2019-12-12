@@ -17,6 +17,7 @@ body {
   margin:0;
   background-color:#ddd;
   color:#333;
+  min-width: 100%;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -111,8 +112,9 @@ i:hover {
 }
 .videoList{
   width: 80%;
-  margin: 2% auto;
+  margin: 0 auto;
   list-style: none;
+  padding-top: 35px;
 }
 
 .row{
@@ -137,8 +139,95 @@ i:hover {
 .videoDescription p{
   color: #908f8f;
 }
-.textBox{
-  width: 67%;
-  height: inherit;
-  position: relative;
+/*.textBox{*/
+/*  width: 67%;*/
+/*  height: inherit;*/
+/*  position: relative;*/
+/*}*/
+
+/*Video form*/
+.videoForm{
+  max-width: 500px;
+  margin: 10px auto;
+  padding: 20px;
+  background: #fbfbfb;
+}
+
+.videoForm input{
+  font-family: Georgia, "Times New Roman", Times, serif;
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  margin: 0;
+  outline: 0;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  background-color: #e8eeef;
+  color: #8a97a0;
+  -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+}
+
+.videoForm input:focus{
+  background: #d2d9dd;
+}
+
+.videoForm .videoInput{
+  background: none;
+}
+input[type="file"]{
+background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.videoForm h5{
+  text-align: center;
+}
+
+.loader {
+  position: absolute;
+  margin: 0 auto;
+  z-index: 9999;
+  top: 50px;
+  cursor: wait;
+}
+
+
+
+/*Navbar*/
+
+.siteNavbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.siteNavbar ul li {
+  float: left;
+}
+
+.siteNavbar ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.siteNavbar ul li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.siteNavbar .active {
+  background-color: #6610f2;
 }

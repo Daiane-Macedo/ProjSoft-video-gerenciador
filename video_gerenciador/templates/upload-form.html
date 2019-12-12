@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+<div>
+{#  <img src="{% static '/img/spinner-191px.gif' %}" id="loader">#}
+    <form  class="videoForm" id="videoForm"  enctype="multipart/form-data" method="POST" action="{% url "upload" %}">
+        <h5>Dados do vídeo</h5>
+
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="videoInput" type="file" accept="video/*" name = "video" onchange="this.form.submit()"/>
+    </form>
+</div>
+{% endblock %}

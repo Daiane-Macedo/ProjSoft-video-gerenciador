@@ -8,10 +8,9 @@ from .views import Video
 app_name = "app"
 
 urlpatterns = [
-                path('', Video.index_view, name='index_view'),
-                path('upload', Video.show_video, name='upload'),
-                path('video', Video.post_video, name='video'),
-                path('list', Video.list_videos, name='list')
+                path('video', Video.show_video, name='video'),
+                path('upload', Video.post_video, name='upload'),
+                path('', Video.list_videos, name='home')
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

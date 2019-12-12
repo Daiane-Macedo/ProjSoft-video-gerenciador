@@ -128,12 +128,14 @@ USE_L10N = True
 
 USE_TZ = True
 
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_STORAGE = [os.path.join(BASE_DIR, 'static')]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = 'media/'
 
-# SITE_URL = "http://127.0.0.1:8000"
+SITE_URL = "http://127.0.0.1:8000"
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
