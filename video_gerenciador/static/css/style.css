@@ -159,7 +159,14 @@ i:hover {
   font-weight: 600;
   color: #ffff;
 }
+.videoPlayer{
+  margin: 0 auto;
+}
 
+.videoPlayer video{
+  width: 80%;
+  height: 80%;
+}
 
 
 /*.textBox{*/
@@ -169,6 +176,7 @@ i:hover {
 /*}*/
 
 /*Video form*/
+.novoVideo,
 .videoForm, .userForm {
   max-width: 500px;
   margin: 10px auto;
@@ -176,6 +184,18 @@ i:hover {
   background: #fbfbfb;
 }
 
+.novoVideo a{
+    background: #bfbfbf;
+    padding: 13px;
+    border-radius: 4px;
+    margin-right: 15px;
+    color: #000;
+    font-weight: 600;
+}
+.novoVideo{
+  text-align: center;
+  padding: 30px;
+}
 .videoForm input, .userForm input {
   border: none;
   border-radius: 4px;
@@ -201,12 +221,15 @@ i:hover {
   background: none;
 }
 input[type="file"]{
-background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	cursor: pointer;
-	outline: inherit;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: inherit;
+}
+input.videoInput{
+  background: none;
 }
 
 .videoForm h5, .userForm h5 {
@@ -251,4 +274,18 @@ background: none;
 
 .siteNavbar .active {
   background-color: #6610f2;
+}
+button{
+  text-transform: none;
+  background: #6610f2;
+  border: none;
+  padding: 4px 17px;
+  color: #fff;
+  margin: 0 auto;
+}
+
+.videoForm button{
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
 }
